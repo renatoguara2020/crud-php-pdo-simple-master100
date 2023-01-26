@@ -37,7 +37,7 @@
             //insert data to database
             $sql =
                 'INSERT INTO users(name, age, email) VALUES(:name, :age, :email)';
-            $query = $dbConn->prepare($sql);
+            $query = $conn->prepare($sql);
 
             $query->bindparam(':name', $name);
             $query->bindparam(':age', $age);
