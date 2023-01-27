@@ -26,7 +26,7 @@ if (isset($_POST['update'])) {
         //updating the table
         $sql =
             'UPDATE users SET name=:name, age=:age, email=:email WHERE id=:id';
-        $query = $dbConn->prepare($sql);
+        $query = $conn->prepare($sql);
 
         $query->bindparam(':id', $id);
         $query->bindparam(':name', $name);
@@ -35,7 +35,12 @@ if (isset($_POST['update'])) {
         $query->execute();
 
         // Alternative to above bindparam and execute
-        // $query->execute(array(':id' => $id, ':name' => $name, ':email' => $email, ':age' => $age));
+        $query->execute([
+            ':id' => $id,
+            ':name' => $name,
+            ':email' => $email,
+            ':age' => $age,
+        ]);
 
         //redirectig to the display page. In our case, it is index.php
         header('Location: index.php');
